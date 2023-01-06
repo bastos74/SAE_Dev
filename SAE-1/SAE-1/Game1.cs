@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Input;
 using MonoGame.Extended.Tiled;
 using MonoGame.Extended.Tiled.Renderers;
 
+
 namespace SAE_1
 {
     public class Game1 : Game
@@ -24,7 +25,10 @@ namespace SAE_1
         public const int HAUTEUR_Z = 24;      
         private int _vitesseZ;
         private int _sens;
+
         
+        private Png png; 
+
         // les vecteur 
         private Vector2 _direction;
         private int vitesse;
@@ -57,19 +61,21 @@ namespace SAE_1
             //vecteur  
             _direction = Vector2.Normalize(new Vector2(1, -3));
 
+            // les png 
+            png = new Png(new Vector2(20, 25));
+            
             base.Initialize();
         }
 
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
-            _tiledMap = Content.Load<TiledMap>("mapP");
+            _tiledMap = Content.Load<TiledMap>("mapdebgp");
             _tiledMapRenderer = new TiledMapRenderer(GraphicsDevice, _tiledMap);
 
             _Zombie = Content.Load<Texture2D>("zombie_idle");
-            mapLayer = _tiledMap.GetLayer<TiledMapTileLayer>("maison et autres ");
+            mapLayer = _tiledMap.GetLayer<TiledMapTileLayer>("maison");
             
-           
 
             // TODO: use this.Content to load your game content here
         }
@@ -107,13 +113,9 @@ namespace SAE_1
                 _Pzombie.X += _sens * _vitesseZ * deltaTime;
 
                 if (IsCollision(tx, ty))
-                { _Pzombie.X -= _sens * _vitesseZ * deltaTime ;}
-
-                
+                { _Pzombie.X -= _sens * _vitesseZ * deltaTime ;}           
             }
-            
-           
-            
+                      
             // fleche gauche 
             if (_keyboardState.IsKeyDown(Keys.Left))
             {

@@ -1,9 +1,9 @@
 
 #----------------------------- Global Properties ----------------------------#
 
-/outputDir:bin/$(Platform)
-/intermediateDir:obj/$(Platform)
-/platform:DesktopGL
+/outputDir:bin
+/intermediateDir:obj
+/platform:Windows
 /config:
 /profile:Reach
 /compress:False
@@ -17,11 +17,6 @@
 /reference:..\..\..\..\..\..\.nuget\packages\monogame.extended.content.pipeline\3.8.0\tools\Newtonsoft.Json.dll
 
 #---------------------------------- Content ---------------------------------#
-
-#begin base de tuile.tsx
-/importer:TiledMapTilesetImporter
-/processor:TiledMapTilesetProcessor
-/build:base de tuile.tsx
 
 #begin bg.png
 /importer:TextureImporter
@@ -59,49 +54,20 @@
 /processorParam:TextureFormat=Color
 /build:colored_tilemap_packed.png
 
-#begin map_p.tmx
+#begin mapdebgp.tmx
 /importer:TiledMapImporter
 /processor:TiledMapProcessor
-/build:map_p.tmx
-
-#begin mapP.tmx
-/importer:TiledMapImporter
-/processor:TiledMapProcessor
-/build:mapP.tmx
-
-#begin mapPr.tmx
-/importer:TiledMapImporter
-/processor:TiledMapProcessor
-/build:mapPr.tmx
-
-#begin Piskel_SAE1.01 (2).png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Piskel_SAE1.01 (2).png
+/build:mapdebgp.tmx
 
 #begin tuile.tsx
 /importer:TiledMapTilesetImporter
 /processor:TiledMapTilesetProcessor
 /build:tuile.tsx
 
-#begin tuile/Tilemap/tilemap_packed.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:tuile/Tilemap/tilemap_packed.png
+#begin tulie.tsx
+/importer:TiledMapTilesetImporter
+/processor:TiledMapTilesetProcessor
+/build:tulie.tsx
 
 #begin zombie_idle.png
 /importer:TextureImporter
