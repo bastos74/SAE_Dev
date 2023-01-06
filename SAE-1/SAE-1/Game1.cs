@@ -44,7 +44,7 @@ namespace SAE_1
             IsMouseVisible = true;
             
         }
-
+        
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
