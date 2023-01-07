@@ -98,7 +98,7 @@ namespace SAE_1
 
             base.LoadContent();
            
-            _font = Content.Load<SpriteFont>("font");
+            //_font = Content.Load<SpriteFont>("font");
 
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             _tiledMap = Content.Load<TiledMap>("mapdebgp");
@@ -202,11 +202,11 @@ namespace SAE_1
            
             _myGame.SpriteBatch.Begin();
             _tiledMapRenderer.Draw(); _tiledMapRenderer.Draw();
-            _spriteBatch.Draw(_Zombie, _Pzombie, Color.White);
-            for (int i = 0; i < _Png.Length; i++)
-            {
-                _spriteBatch.Draw(_Png[i], _Pngp[i], Color.White);
-            }
+            //_spriteBatch.Draw(_Zombie, _Pzombie, Color.White);
+            //for (int i = 0; i < _Png.Length; i++)
+            //{
+            //    _spriteBatch.Draw(_Png[i], _Pngp[i], Color.White);
+            //}
             _myGame.SpriteBatch.End();
 
 

@@ -90,13 +90,6 @@
 /processorParam:TextureFormat=Color
 /build:downarrow.png
 
-#begin font.spritefont
-/importer:FontDescriptionImporter
-/processor:FontDescriptionProcessor
-/processorParam:PremultiplyAlpha=True
-/processorParam:TextureFormat=Compressed
-/build:font.spritefont
-
 #begin leftarrow.png
 /importer:TextureImporter
 /processor:TextureProcessor
