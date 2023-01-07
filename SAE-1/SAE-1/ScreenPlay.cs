@@ -198,15 +198,17 @@ namespace SAE_1
         public override void Draw(GameTime gameTime)
         {
 
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.Black);
            
             _myGame.SpriteBatch.Begin();
+            _spriteBatch.Begin();
             _tiledMapRenderer.Draw(); _tiledMapRenderer.Draw();
-            //_spriteBatch.Draw(_Zombie, _Pzombie, Color.White);
-            //for (int i = 0; i < _Png.Length; i++)
-            //{
-            //    _spriteBatch.Draw(_Png[i], _Pngp[i], Color.White);
-            //}
+            _spriteBatch.Draw(_Zombie, _Pzombie, Color.White);
+            for (int i = 0; i < _Png.Length; i++)
+            {
+                _spriteBatch.Draw(_Png[i], _Pngp[i], Color.White);
+            }
+            _spriteBatch.End();
             _myGame.SpriteBatch.End();
 
 
