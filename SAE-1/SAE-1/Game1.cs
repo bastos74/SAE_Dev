@@ -15,17 +15,16 @@ namespace SAE_1
         private SpriteBatch _spriteBatch;
         private readonly ScreenManager _screenManager;
 
-        // on définit les différents états possibles du jeu ( à compléter) 
+        // on définit les différents états possibles du jeu  
         public enum Etats { Menu, Controls, Play, Quit };
 
         // on définit un champ pour stocker l'état en cours du jeu
         private Etats etat;
 
-        // on définit  3 écrans ( à compléter )
+        // on définit  3 écrans 
         private ScreenMenu _screenMenu;
         private ScreenPlay _screenPlay;
         private ScreenControls _screenControls;
-
 
         public SpriteBatch SpriteBatch
         {

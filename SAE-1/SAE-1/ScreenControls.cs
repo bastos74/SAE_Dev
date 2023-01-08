@@ -57,10 +57,10 @@ namespace SAE_1
             //_myGame.SpriteBatch.DrawString(_font, $"Mouvement", new Vector2(0, 10), Color.Crimson);
             _myGame.SpriteBatch.Draw(_textureUpArrow, new Vector2(400, 50), Color.White);
             _myGame.SpriteBatch.Draw(_textureDownArrow, new Vector2(400, 100), Color.White);
-            _myGame.SpriteBatch.Draw(_textureLeftArrow, new Vector2(350, 100), Color.White);
+            _myGame.SpriteBatch.Draw(_textureLeftArrow, new Vector2(350, 100), Color.White);    
             _myGame.SpriteBatch.Draw(_textureRightArrow, new Vector2(450, 100), Color.White);
             //_myGame.SpriteBatch.DrawString(_font, $"ATTACK!!!", new Vector2(0, 150), Color.White);
-            _myGame.SpriteBatch.Draw(_textureSpacebar, new Vector2(0, 175), Color.White);
+            //_myGame.SpriteBatch.Draw(_textureSpacebar, new Vector2(0, 175), Color.White);
             //_myGame.SpriteBatch.DrawString(_font, $"OBJECTIVES :" +
             //    "\nProvoke the Apocalypse and the catastrophe around the city as a Zombie " +
             //    "\nBite them All! DON'T SPARE ANYONE!" + "\nEAT THEIR BRAAAAAAAAIIIIIINNNNNN!!!",
