@@ -128,7 +128,7 @@ namespace SAE_1
             {
                 _sens = -1;
 
-                ushort tx = (ushort)(_Pzombie.X / _tiledMap.TileWidth - 0.05);
+                ushort tx = (ushort)(_Pzombie.X / _tiledMap.TileWidth + 0.5);
                 ushort ty = (ushort)(_Pzombie.Y / _tiledMap.TileHeight);
                 _Pzombie.X += _sens * _vitesseZ * deltaTime;
 
@@ -142,7 +142,7 @@ namespace SAE_1
             {
                 _sens = -1;
                 ushort tx = (ushort)(_Pzombie.X / _tiledMap.TileWidth);
-                ushort ty = (ushort)(_Pzombie.Y / _tiledMap.TileHeight - 0.05);
+                ushort ty = (ushort)(_Pzombie.Y / _tiledMap.TileHeight +0.5);
                 _Pzombie.Y += _sens * _vitesseZ * deltaTime;
                 if (Colision.IsCollision(tx, ty))
                 { _Pzombie.Y -= _sens * _vitesseZ * deltaTime; }

@@ -92,7 +92,7 @@ namespace SAE_1
 
         }
 
-        public bool CheckCollisionPlayer(Vector2 posPlayer)
+        public bool CheckCollisionPlayer(Vector2 posPlayer )
         {
             //Console.WriteLine("pnj " + position);
             //Console.WriteLine("joueur " + posPlayer);
