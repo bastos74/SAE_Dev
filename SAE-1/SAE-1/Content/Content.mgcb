@@ -54,18 +54,6 @@
 /processorParam:TextureFormat=Color
 /build:button.png
 
-#begin colored_tilemap_packed.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:colored_tilemap_packed.png
-
 #begin colored_tilemap.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -78,6 +66,18 @@
 /processorParam:TextureFormat=Color
 /build:colored_tilemap.png
 
+#begin colored_tilemap_packed.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:colored_tilemap_packed.png
+
 #begin downarrow.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -89,6 +89,13 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:downarrow.png
+
+#begin font.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:font.spritefont
 
 #begin leftarrow.png
 /importer:TextureImporter

@@ -55,9 +55,7 @@ namespace SAE_1
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
-            _graphics.PreferredBackBufferWidth = 700;
-            _graphics.PreferredBackBufferHeight = 512;
-
+            
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
             _screenManager = new ScreenManager();
@@ -70,13 +68,15 @@ namespace SAE_1
             _screenMenu = new ScreenMenu(this);
             _screenPlay = new ScreenPlay(this);
             _screenControls = new ScreenControls(this);
-
         }
 
         protected override void Initialize()
         {
+            _graphics.PreferredBackBufferWidth = 700;
+            _graphics.PreferredBackBufferHeight = 512;
+            _graphics.ApplyChanges();
+            Window.Title = "Call of the dead ";
             // TODO: Add your initialization logic here
-
             base.Initialize();
         }
 
@@ -115,8 +115,7 @@ namespace SAE_1
                 if (this.Etat == Etats.Menu)
                     _screenManager.LoadScreen(_screenMenu, new FadeTransition(GraphicsDevice, Color.Black));
             }
-
-
+            
             // TODO: Add your update logic here
 
             base.Update(gameTime);

@@ -20,27 +20,27 @@ namespace SAE_1
         // bases 
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
-        private TiledMap _tiledMap;
-        private TiledMapRenderer _tiledMapRenderer;
+        public static TiledMap _tiledMap;
+        public static TiledMapRenderer _tiledMapRenderer;
         public static int fentereHeight = 400;
-        private TiledMapTileLayer mapLayer;
+        public TiledMapTileLayer mapLayer;
         private KeyboardState _keyboardState;
 
         // zombie 
-        private static Texture2D _Zombie;
+        public static Texture2D _Zombie;
         public static Vector2 _Pzombie;
         public const int LARGEUR_Z = 50;
         public const int HAUTEUR_Z = 24;
         private static int _vitesseZ;
         private static int _sens;
 
-        public static List<Persopng> _sprites = new List<Persopng>();
+        public  List<Persopng> _sprites = new List<Persopng>();
 
         // png 
         public static Texture2D _Png;
         //private Texture2D[] _Png = new Texture2D[5];
         //private Vector2[] _Pngp = new Vector2[5];
-        //Random rnb = new Random();
+        Random rnb = new Random();
         //int choix;
 
         // les vecteur 
@@ -64,32 +64,14 @@ namespace SAE_1
             _Pzombie = new Vector2(200, 150);
             _vitesseZ = 150;
             
-            //choix = rnb.Next(1, 3);
-            //if (choix == 1)
-            //{
-            //    for (int i = 0; i < _Pngp.Length; i++)
-            //    {
-            //        _Pngp[i] = new Vector2(rnb.Next(-100, -50), rnb.Next(-100, 450));
-            //    }
-            //}
-            //if (choix == 2)
-            //{
-            //    for (int i = 0; i < _Pngp.Length; i++)
-            //    {
-            //        _Pngp[i] = new Vector2(rnb.Next(-220, 450), rnb.Next(-40, 10));
-            //    }
-            //}
-            //else { }
 
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 1; i++)
             {
-               _sprites.Add(new(_Png, new Vector2(100,100), Content));   
+               _sprites.Add(new(_Png, new Vector2(new Random().Next(0 , 400),new Random().Next(0 , 400)), Content));   
             }
 
             //vecteur  
             _direction = Vector2.Normalize(new Vector2(1, -3));
-
-            //png = new Png(new Vector2(20, 25));
 
             base.Initialize();
         }
@@ -98,7 +80,7 @@ namespace SAE_1
         {
 
             base.LoadContent();
-           
+
             //_font = Content.Load<SpriteFont>("font");
 
             _spriteBatch = new SpriteBatch(GraphicsDevice);
@@ -133,7 +115,7 @@ namespace SAE_1
             if (_keyboardState.IsKeyDown(Keys.Right))
             {
                 _sens = 1;
-                ushort tx = (ushort)(_Pzombie.X / _tiledMap.TileWidth + 1);
+                ushort tx = (ushort)(_Pzombie.X / _tiledMap.TileWidth + 1.25);
                 ushort ty = (ushort)(_Pzombie.Y / _tiledMap.TileHeight);
                 _Pzombie.X += _sens * _vitesseZ * deltaTime;
 
@@ -146,7 +128,7 @@ namespace SAE_1
             {
                 _sens = -1;
 
-                ushort tx = (ushort)(_Pzombie.X / _tiledMap.TileWidth - 1);
+                ushort tx = (ushort)(_Pzombie.X / _tiledMap.TileWidth - 0.05);
                 ushort ty = (ushort)(_Pzombie.Y / _tiledMap.TileHeight);
                 _Pzombie.X += _sens * _vitesseZ * deltaTime;
 
@@ -160,7 +142,7 @@ namespace SAE_1
             {
                 _sens = -1;
                 ushort tx = (ushort)(_Pzombie.X / _tiledMap.TileWidth);
-                ushort ty = (ushort)(_Pzombie.Y / _tiledMap.TileHeight - 1);
+                ushort ty = (ushort)(_Pzombie.Y / _tiledMap.TileHeight - 0.05);
                 _Pzombie.Y += _sens * _vitesseZ * deltaTime;
                 if (Colision.IsCollision(tx, ty))
                 { _Pzombie.Y -= _sens * _vitesseZ * deltaTime; }
@@ -171,12 +153,16 @@ namespace SAE_1
             {
                 _sens = 1;
                 ushort tx = (ushort)(_Pzombie.X / _tiledMap.TileWidth);
-                ushort ty = (ushort)(_Pzombie.Y / _tiledMap.TileHeight + 1);
+                ushort ty = (ushort)(_Pzombie.Y / _tiledMap.TileHeight + 1.25);
                 _Pzombie.Y += _sens * _vitesseZ * deltaTime;
                 if (Colision.IsCollision(tx, ty))
                 { _Pzombie.Y -= _sens * _vitesseZ * deltaTime; }
             }
-
+            for (int i = 0; i < _sprites.Count; i++)
+            {
+                _sprites[i].CheckCollisionPlayer(_Pzombie);
+            }
+            //Persopng.Update();
             // vecteur 
             _positionPerso += _direction * (float)gameTime.ElapsedGameTime.TotalMilliseconds * vitesse;
 
@@ -190,14 +176,15 @@ namespace SAE_1
            
             _myGame.SpriteBatch.Begin();
             _spriteBatch.Begin();
-            _tiledMapRenderer.Draw(); _tiledMapRenderer.Draw();
+            _tiledMapRenderer.Draw();
+            _tiledMapRenderer.Draw();
             _spriteBatch.Draw(_Zombie, _Pzombie, Color.White);
-           
-            Persopng.draw(_spriteBatch);
-            //for (int i = 0; i < _Png.Length; i++)
-            //{
-            //    _spriteBatch.Draw(_Png[i], _Pngp[i], Color.White);
-            //}
+
+            for (int i = 0; i < _sprites.Count; i++)
+            {
+                _sprites[i].draw(_spriteBatch);
+            }
+
             _spriteBatch.End();
             _myGame.SpriteBatch.End();
 

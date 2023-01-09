@@ -26,12 +26,27 @@ namespace SAE_1
 
         public Persopng(Texture2D _png, Vector2 position, ContentManager content)
         {
-            
             this._png = content.Load<Texture2D>("png");
 
-            int x = new Random().Next(0, 700 );
-            int y = new  Random().Next(0, 500 );
-            this.Position = new Vector2(x, y);
+            Console.WriteLine(position);
+            this.Position = position;
+        }
+
+        public void Apparaitre()
+        {
+            bool poss = false;
+            Vector2 pos = new Vector2(0 , 0);
+
+            while (!poss)
+            {
+                poss = true;
+                pos = new Vector2(new Random().Next(0, 512), new Random().Next(0, 700));
+                if (Colision.IsCollision((ushort)(pos.X / ScreenPlay._tiledMap.TileWidth), (ushort)(pos.Y / ScreenPlay._tiledMap.TileWidth)))
+                {
+                    poss = false;
+                }
+            }this.Position = pos;
+
         }
 
         public Vector2 Position
@@ -47,34 +62,54 @@ namespace SAE_1
             }
         }
 
-        public static void draw(SpriteBatch spriteBatch)
+        //public static void Update()
+        //{
+
+
+        //    for (int i = 0; i < 10; i++)
+        //    {
+        //        //Persopng sprite = ScreenPlay._sprites[i];
+
+        //        float distance = Vector2.Distance(sprite.Position, ScreenPlay._Pzombie);
+
+        //        // distance infereiur a 15 pixel 
+        //        if (distance <= 15)
+        //        {
+        //            sprite.visible = false;
+        //            Console.WriteLine("touche");
+        //        }
+        //        else
+        //        {
+        //            sprite.visible = true;
+        //        }
+
+        //    }
+
+        //}
+        public  void draw(SpriteBatch spriteBatch)
         {
+            spriteBatch.Draw(ScreenPlay._Png, position, Color.White);
 
+        }
 
-            foreach (Persopng sprite in ScreenPlay._sprites)
+        public bool CheckCollisionPlayer(Vector2 posPlayer)
+        {
+            //Console.WriteLine("pnj " + position);
+            //Console.WriteLine("joueur " + posPlayer);
+
+            Vector2 distance = posPlayer - position;
+            Console.WriteLine(Vector2.Distance(posPlayer, posPlayer));
+
+            // distance infereiur a 15 pixel 
+            if (Vector2.Distance(posPlayer,posPlayer)<2)
             {
-                // calcul la distance entre les png et le zombie 
-                float distance = Vector2.Distance(sprite.Position, ScreenPlay._Pzombie);
-                
-                // distance infereiur a 15 pixel 
-                if (distance < 15)
-                {
-                    sprite.visible = false;
-                    Console.WriteLine("touche");
-                }
-                else
-                {
-                    sprite.visible = true;
-                }
-
-                // Ne dessinez le sprite que s'il est visible
-                if (sprite.visible)
-                {
-                    spriteBatch.Draw(ScreenPlay._Png, sprite.Position, Color.White);
-
-                }
+                Console.WriteLine("CA COLISIONNE");
+                return true;
             }
-
+            else
+            {
+                return false;
+            }
         }
 
     }

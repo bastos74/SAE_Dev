@@ -14,10 +14,9 @@ namespace SAE_1
     public class ScreenMenu : GameScreen
     {
 
-        // pour récupérer une référence à l’objet game pour avoir accès à tout ce qui est 
-        // défini dans Game1
+        // pour récupérer une référence à l’objet game pour avoir accès à tout ce qui est défini dans Game1
         private Game1 _myGame;
-
+        
         // texture du menu avec 3 boutons
         private Texture2D _textBoutons;
 
@@ -58,10 +57,8 @@ namespace SAE_1
                             _myGame.Etat = Game1.Etats.Quit;
                         break; 
                     }
-
                 }
             }
-
         }
         public override void Draw(GameTime gameTime)
         {
@@ -69,11 +66,6 @@ namespace SAE_1
             _myGame.SpriteBatch.Begin();
             _myGame.SpriteBatch.Draw(_textBoutons, new Vector2(0, 0), Color.White);
             _myGame.SpriteBatch.End();
-
-
         }
-
-
-
     }
 }
