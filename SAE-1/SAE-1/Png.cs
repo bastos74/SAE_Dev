@@ -22,7 +22,10 @@ namespace SAE_1
         private Texture2D _png;
         private Vector2 position;
         
-        private static Vector2 positionVector = new Vector2(100, 100);
+       
+       private static Vector2 pointA = new Vector2(1, 2);
+       private static Vector2 pointB = new Vector2(3, 4);
+       private static Vector2 positionVector = Vector2.Subtract(pointB, pointA);
 
         //private AnimatedSprite pnng;
 
@@ -65,17 +68,22 @@ namespace SAE_1
             }
         }
 
-        public static void Update()
+        public static void Update(float deltaTime)
         {
+            int vitesse = 60;
+            
+            Vector2 sens;
+
+
             for (int i = 0; i < ScreenPlay._sprites.Count; i++)
             {
-
+                
                 Png png = ScreenPlay._sprites[i];
                 float distance = Vector2.Distance(png.Position, ScreenPlay._Pzombie);
                 
   
                 // si la distance est inferieur a 15 pixel il y a une colision 
-                if (distance < 15 )
+                if (distance < 8 )
                 {
                     Console.WriteLine("sa touche");
                     Png pngASupprime = ScreenPlay._sprites[i];
@@ -83,10 +91,15 @@ namespace SAE_1
                     ScreenPlay._score++;
                        
                 }
-            
-                if (distance < 15)
+                sens = Vector2.Normalize(ScreenPlay._sprites[i].Position - ScreenPlay._Pzombie);
+
+                if (distance < 30 )
                 {
-                    png.position = positionVector;
+
+                    png.position += sens * vitesse * deltaTime;
+
+
+                    
                 }
             }
         }

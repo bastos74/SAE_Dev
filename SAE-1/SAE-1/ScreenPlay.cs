@@ -64,7 +64,7 @@ namespace SAE_1
      
             GraphicsDevice.BlendState = BlendState.AlphaBlend;
 
-            _Pzombie = new Vector2(200, 200);
+            _Pzombie = new Vector2(0, 0);
             _vitesseZ = 150;
 
             for (int i = 0; i < 15; i++)
@@ -77,6 +77,7 @@ namespace SAE_1
 
             // score 
             _score = 0;
+            _positionscore = new Vector2(630, 0);
            
 
             base.Initialize();
@@ -177,12 +178,8 @@ namespace SAE_1
                 { _Pzombie.Y -= _sens * _vitesseZ * deltaTime; }
             }
 
+            Png.Update(deltaTime);
 
-           
-
-            Png.Update();
-
-            //Persopng.Update();
             // vecteur 
             _positionPerso += _direction * (float)gameTime.ElapsedGameTime.TotalMilliseconds * vitesse;
 
