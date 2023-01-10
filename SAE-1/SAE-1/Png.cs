@@ -17,7 +17,7 @@ using MonoGame.Extended.Serialization;
 
 namespace SAE_1
 {
-    internal class Png
+    public class Png
     {
         private Texture2D _png;
         private Vector2 position;
@@ -26,7 +26,7 @@ namespace SAE_1
 
         public Png(Texture2D _png, Vector2 position, ContentManager content)
         {
-            this._png = content.Load<Texture2D>("png");
+            this._png = content.Load<Texture2D>("pnng");
 
             Console.WriteLine(position);
             this.Position = position;
@@ -40,15 +40,16 @@ namespace SAE_1
             while (!poss)
             {
                 poss = true;
-                pos = new Vector2(new Random().Next(0, 512), new Random().Next(0, 700));
+                pos = new Vector2(new Random().Next(0, 1), new Random().Next(0, 1));
                 if (Colision.IsCollision((ushort)(pos.X / ScreenPlay._tiledMap.TileWidth), (ushort)(pos.Y / ScreenPlay._tiledMap.TileWidth)))
                 {
                     poss = false;
                 }
+                Console.WriteLine((pos.X / ScreenPlay._tiledMap.TileWidth));
             }
             this.Position = pos;
-
         }
+       
         public Vector2 Position
         {
             get
@@ -62,33 +63,45 @@ namespace SAE_1
             }
         }
 
-        public void draw()
+        public static void Update()
         {
-            foreach (RandomSprite sprite in sprites)
+            for (int i = 0; i < ScreenPlay._sprites.Count; i++)
             {
-                // Calculate the distance between the sprite and the monster
-                float distance = Vector2.Distance(sprite.Position, ScreenPlay._Pzombie);
 
-                // If the distance is less than 15 pixels, hide the sprite
-                if (distance < 15)
+                Png png = ScreenPlay._sprites[i];
+                float distance = Vector2.Distance(png.Position, ScreenPlay._Pzombie);
+                
+                Console.WriteLine(png.position);
+                Console.WriteLine(ScreenPlay._Pzombie);
+                
+                if (distance < 15 )
                 {
-                    sprite.IsVisible = false;
-                }
-                else
-                {
-                    sprite.IsVisible = true;
-                }
-
-                // Only draw the sprite if it is visible
-                if (sprite.IsVisible)
-                {
-                    spriteBatch.Draw(sprite.Texture, sprite.Position, Color.White);
+                    Console.WriteLine(distance);
+                    Console.WriteLine("sa touche");
+                    
                 }
             }
+        }
+        
+        public static void Draw(SpriteBatch _spriteBatch)
+        {
+            for (int i = 0; i < ScreenPlay._sprites.Count; i++)
+            {
+                //ScreenPlay._sprites[i].draw(spriteBatch);
+                
+                   
+                Png png = ScreenPlay._sprites[i];
+               
+                _spriteBatch.Draw(png._png, png.position, Color.White);
+                
+               
 
+
+            }
+            
 
         }
-    
-    
+
+
     }
 }

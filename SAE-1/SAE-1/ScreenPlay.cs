@@ -34,7 +34,7 @@ namespace SAE_1
         private static int _vitesseZ;
         private static int _sens;
 
-        public  List<Persopng> _sprites = new List<Persopng>();
+        public static List<Png> _sprites = new List<Png>();
 
         // png 
         public static Texture2D _Png;
@@ -61,17 +61,19 @@ namespace SAE_1
      
             GraphicsDevice.BlendState = BlendState.AlphaBlend;
 
-            _Pzombie = new Vector2(200, 150);
+            _Pzombie = new Vector2(0, 0);
             _vitesseZ = 150;
             
 
-            for (int i = 0; i < 1; i++)
+            for (int i = 0; i < 10; i++)
             {
                _sprites.Add(new(_Png, new Vector2(new Random().Next(0 , 400),new Random().Next(0 , 400)), Content));   
             }
 
             //vecteur  
             _direction = Vector2.Normalize(new Vector2(1, -3));
+
+           
 
             base.Initialize();
         }
@@ -88,7 +90,12 @@ namespace SAE_1
             Colision.LoadContent(Content);
             _tiledMapRenderer = new TiledMapRenderer(GraphicsDevice, _tiledMap);
             _Zombie = Content.Load<Texture2D>("zombie_idle");
-
+            
+            for (int i = 0; i < _sprites.Count; i++)
+            {
+                _sprites[i].Apparaitre();
+            }
+            
             _Png = Content.Load<Texture2D>("Png");
             //for (int i = 0; i < _Png.Length; i++)
             //{
@@ -158,10 +165,12 @@ namespace SAE_1
                 if (Colision.IsCollision(tx, ty))
                 { _Pzombie.Y -= _sens * _vitesseZ * deltaTime; }
             }
-            for (int i = 0; i < _sprites.Count; i++)
-            {
-                _sprites[i].CheckCollisionPlayer(_Pzombie);
-            }
+
+
+           
+
+            Png.Update();
+
             //Persopng.Update();
             // vecteur 
             _positionPerso += _direction * (float)gameTime.ElapsedGameTime.TotalMilliseconds * vitesse;
@@ -177,13 +186,12 @@ namespace SAE_1
             _myGame.SpriteBatch.Begin();
             _spriteBatch.Begin();
             _tiledMapRenderer.Draw();
-            _tiledMapRenderer.Draw();
+         
             _spriteBatch.Draw(_Zombie, _Pzombie, Color.White);
 
-            for (int i = 0; i < _sprites.Count; i++)
-            {
-                _sprites[i].draw(_spriteBatch);
-            }
+            Png.Draw(_spriteBatch);
+            
+            
 
             _spriteBatch.End();
             _myGame.SpriteBatch.End();
