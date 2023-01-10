@@ -96,7 +96,6 @@ namespace SAE_1
                 _sprites[i].Apparaitre();
             }
             
-            _Png = Content.Load<Texture2D>("Png");
             //for (int i = 0; i < _Png.Length; i++)
             //{
             //    _Png[i] = Content.Load<Texture2D>("Png");

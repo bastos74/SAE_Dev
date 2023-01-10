@@ -26,7 +26,7 @@ namespace SAE_1
 
         public Png(Texture2D _png, Vector2 position, ContentManager content)
         {
-            this._png = content.Load<Texture2D>("pnng");
+            this._png = content.Load<Texture2D>("Character");
 
             Console.WriteLine(position);
             this.Position = position;
@@ -40,7 +40,7 @@ namespace SAE_1
             while (!poss)
             {
                 poss = true;
-                pos = new Vector2(new Random().Next(0, 1), new Random().Next(0, 1));
+                pos = new Vector2(new Random().Next(0, 512), new Random().Next(0, 700));
                 if (Colision.IsCollision((ushort)(pos.X / ScreenPlay._tiledMap.TileWidth), (ushort)(pos.Y / ScreenPlay._tiledMap.TileWidth)))
                 {
                     poss = false;
@@ -71,14 +71,14 @@ namespace SAE_1
                 Png png = ScreenPlay._sprites[i];
                 float distance = Vector2.Distance(png.Position, ScreenPlay._Pzombie);
                 
-                Console.WriteLine(png.position);
-                Console.WriteLine(ScreenPlay._Pzombie);
-                
+  
+                // si la distance est inferieur a 15 pixel il y a une colision 
                 if (distance < 15 )
                 {
-                    Console.WriteLine(distance);
                     Console.WriteLine("sa touche");
-                    
+                    Png pngASupprime = ScreenPlay._sprites[i];
+                    ScreenPlay._sprites.Remove(pngASupprime);
+                       
                 }
             }
         }
@@ -94,9 +94,6 @@ namespace SAE_1
                
                 _spriteBatch.Draw(png._png, png.position, Color.White);
                 
-               
-
-
             }
             
 
