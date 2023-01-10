@@ -34,7 +34,7 @@ namespace SAE_1
         }
         public override void LoadContent()
         {
-            _textBoutons = Content.Load<Texture2D>("button");
+            _textBoutons = Content.Load<Texture2D>("menu_sah");
             base.LoadContent();
         }
         public override void Update(GameTime gameTime)

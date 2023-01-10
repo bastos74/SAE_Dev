@@ -16,7 +16,7 @@ namespace SAE_1
         private readonly ScreenManager _screenManager;
 
         // on définit les différents états possibles du jeu  
-        public enum Etats { Menu, Controls, Play, Quit };
+        public enum Etats { Menu, Controls, Play, Quit , Pause};
 
         // on définit un champ pour stocker l'état en cours du jeu
         private Etats etat;
@@ -25,6 +25,8 @@ namespace SAE_1
         private ScreenMenu _screenMenu;
         private ScreenPlay _screenPlay;
         private ScreenControls _screenControls;
+        private ScreenPause _screenPause;
+        
 
         public SpriteBatch SpriteBatch
         {
@@ -68,6 +70,8 @@ namespace SAE_1
             _screenMenu = new ScreenMenu(this);
             _screenPlay = new ScreenPlay(this);
             _screenControls = new ScreenControls(this);
+            _screenPause = new ScreenPause(this);
+            
         }
 
         protected override void Initialize()
@@ -91,14 +95,14 @@ namespace SAE_1
 
         protected override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.F1))
                 Exit();
 
             // On teste le clic de souris et l'état pour savoir quelle action faire 
             MouseState _mouseState = Mouse.GetState();
             if (_mouseState.LeftButton == ButtonState.Pressed)
             {
-                // Attention, l'état a été mis à jour directement par l'écran en question
+
                 if (this.Etat == Etats.Quit)
                     Exit();
 
@@ -107,6 +111,7 @@ namespace SAE_1
 
                 else if (this.Etat == Etats.Controls)
                     _screenManager.LoadScreen(_screenControls, new FadeTransition(GraphicsDevice, Color.Black));
+               
 
             }
 
@@ -115,7 +120,14 @@ namespace SAE_1
                 if (this.Etat == Etats.Menu)
                     _screenManager.LoadScreen(_screenMenu, new FadeTransition(GraphicsDevice, Color.Black));
             }
-            
+
+            if (Keyboard.GetState().IsKeyDown(Keys.Tab))
+            {
+                    if (this.Etat == Etats.Pause)
+                    _screenManager.LoadScreen(_screenPause, new FadeTransition(GraphicsDevice, Color.Beige));
+            }
+               
+
             // TODO: Add your update logic here
 
             base.Update(gameTime);

@@ -21,7 +21,9 @@ namespace SAE_1
     {
         private Texture2D _png;
         private Vector2 position;
-        private bool visible = false;
+        
+        private static Vector2 positionVector = new Vector2(100, 100);
+
         //private AnimatedSprite pnng;
 
         public Png(Texture2D _png, Vector2 position, ContentManager content)
@@ -78,7 +80,13 @@ namespace SAE_1
                     Console.WriteLine("sa touche");
                     Png pngASupprime = ScreenPlay._sprites[i];
                     ScreenPlay._sprites.Remove(pngASupprime);
+                    ScreenPlay._score++;
                        
+                }
+            
+                if (distance < 15)
+                {
+                    png.position = positionVector;
                 }
             }
         }

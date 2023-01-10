@@ -34,14 +34,17 @@ namespace SAE_1
         private static int _vitesseZ;
         private static int _sens;
 
-        public static List<Png> _sprites = new List<Png>();
+        
 
         // png 
         public static Texture2D _Png;
-        //private Texture2D[] _Png = new Texture2D[5];
-        //private Vector2[] _Pngp = new Vector2[5];
+        public static List<Png> _sprites = new List<Png>();
+
         Random rnb = new Random();
-        //int choix;
+
+        public static int _score;
+        public Vector2 _positionscore;
+        public SpriteFont _police;
 
         // les vecteur 
         private Vector2 _direction;
@@ -61,11 +64,10 @@ namespace SAE_1
      
             GraphicsDevice.BlendState = BlendState.AlphaBlend;
 
-            _Pzombie = new Vector2(0, 0);
+            _Pzombie = new Vector2(200, 200);
             _vitesseZ = 150;
-            
 
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 15; i++)
             {
                _sprites.Add(new(_Png, new Vector2(new Random().Next(0 , 400),new Random().Next(0 , 400)), Content));   
             }
@@ -73,6 +75,8 @@ namespace SAE_1
             //vecteur  
             _direction = Vector2.Normalize(new Vector2(1, -3));
 
+            // score 
+            _score = 0;
            
 
             base.Initialize();
@@ -89,8 +93,12 @@ namespace SAE_1
             _tiledMap = Content.Load<TiledMap>("mapdebgp");
             Colision.LoadContent(Content);
             _tiledMapRenderer = new TiledMapRenderer(GraphicsDevice, _tiledMap);
-            _Zombie = Content.Load<Texture2D>("zombie_idle");
-            
+            _Zombie = Content.Load<Texture2D>("ZSAE1.01");
+
+            // pour le score 
+            _police = Content.Load<SpriteFont>("font");
+
+            // pour les png 
             for (int i = 0; i < _sprites.Count; i++)
             {
                 _sprites[i].Apparaitre();
@@ -106,8 +114,12 @@ namespace SAE_1
         {
 
             if (Keyboard.GetState().IsKeyDown(Keys.Back))
-                _myGame.Etat = Game1.Etats.Menu;
+                { _myGame.Etat = Game1.Etats.Menu; }
+           
 
+            if (Keyboard.GetState().IsKeyDown(Keys.Tab))
+                { _myGame.Etat = Game1.Etats.Play; }
+            
 
             int vitesse = 2;
 
@@ -190,8 +202,7 @@ namespace SAE_1
 
             Png.Draw(_spriteBatch);
             
-            
-
+            _spriteBatch.DrawString(_police, $"score : {_score}", _positionscore, Color.White);
             _spriteBatch.End();
             _myGame.SpriteBatch.End();
 
