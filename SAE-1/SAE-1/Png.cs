@@ -95,11 +95,17 @@ namespace SAE_1
 
                 if (distance < 30 )
                 {
-
                     png.position += sens * vitesse * deltaTime;
-
-
                     
+                    //if (sens.X == 1)
+                    //{
+                    //    ushort tx = (ushort)(png.position.X / ScreenPlay._tiledMap.TileWidth + 1.25);
+                    //    ushort ty = (ushort)(png.position.Y / ScreenPlay._tiledMap.TileHeight);
+                    //    if (Colision.IsCollision(tx, ty))
+                    //    { png.position.X -= sens * vitesse * deltaTime; }
+
+                    //}
+
                 }
             }
         }
