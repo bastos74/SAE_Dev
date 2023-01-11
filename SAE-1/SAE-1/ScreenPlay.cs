@@ -25,14 +25,19 @@ namespace SAE_1
         public static int fentereHeight = 400;
         public TiledMapTileLayer mapLayer;
         private KeyboardState _keyboardState;
+        // chrono 
+        public static float _chrono;
+        public Vector2 _positionChrono;
 
         // zombie 
         public static Texture2D _Zombie;
+        private AnimatedSprite _zombie;
         public static Vector2 _Pzombie;
         public const int LARGEUR_Z = 50;
         public const int HAUTEUR_Z = 24;
         private static int _vitesseZ;
         private static int _sens;
+
 
         
 
@@ -67,9 +72,9 @@ namespace SAE_1
             _Pzombie = new Vector2(0, 0);
             _vitesseZ = 150;
 
-            for (int i = 0; i < 15; i++)
+            for (int i = 0; i < 20; i++)
             {
-               _sprites.Add(new(_Png, new Vector2(new Random().Next(0 , 400),new Random().Next(0 , 400)), Content));   
+               _sprites.Add(new(_Png, new Vector2(new Random().Next(0 , 700),new Random().Next(0 , 512)), Content));   
             }
 
             //vecteur  
@@ -78,7 +83,10 @@ namespace SAE_1
             // score 
             _score = 0;
             _positionscore = new Vector2(630, 0);
-           
+            // chrono 
+            _chrono = 10;
+            _positionChrono = new Vector2(612, 15);
+
 
             base.Initialize();
         }
@@ -95,6 +103,7 @@ namespace SAE_1
             Colision.LoadContent(Content);
             _tiledMapRenderer = new TiledMapRenderer(GraphicsDevice, _tiledMap);
             _Zombie = Content.Load<Texture2D>("ZSAE1.01");
+            
 
             // pour le score 
             _police = Content.Load<SpriteFont>("font");
@@ -119,11 +128,12 @@ namespace SAE_1
            
 
             if (Keyboard.GetState().IsKeyDown(Keys.Tab))
-                { _myGame.Etat = Game1.Etats.Play; }
+                { _myGame.Etat = Game1.Etats.Pause; }
             
+            int vitesse = 1;
 
-            int vitesse = 2;
-
+           
+            
             float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
             float walkSpeed = deltaTime * vitesse; // Vitesse de déplacement du sprite 
             _keyboardState = Keyboard.GetState();
@@ -147,7 +157,7 @@ namespace SAE_1
             {
                 _sens = -1;
 
-                ushort tx = (ushort)(_Pzombie.X / _tiledMap.TileWidth + 0.5);
+                ushort tx = (ushort)(_Pzombie.X / _tiledMap.TileWidth - 0.5);
                 ushort ty = (ushort)(_Pzombie.Y / _tiledMap.TileHeight);
                 _Pzombie.X += _sens * _vitesseZ * deltaTime;
 
@@ -180,6 +190,18 @@ namespace SAE_1
 
             Png.Update(deltaTime);
 
+            // chrono 
+            _chrono -= (deltaTime);
+
+            if (_chrono <= 0)
+            {
+                _chrono = 0;
+                _vitesseZ = 0;
+                _myGame.Etat = Game1.Etats.End;
+
+            }
+
+
             // vecteur 
             _positionPerso += _direction * (float)gameTime.ElapsedGameTime.TotalMilliseconds * vitesse;
 
@@ -199,7 +221,8 @@ namespace SAE_1
 
             Png.Draw(_spriteBatch);
             
-            _spriteBatch.DrawString(_police, $"score : {_score}", _positionscore, Color.White);
+            _spriteBatch.DrawString(_police, $"score : {_score}", _positionscore, Color.Black);
+            _spriteBatch.DrawString(_police, $"Temps : {Math.Round(_chrono)}", _positionChrono, Color.Black);
             _spriteBatch.End();
             _myGame.SpriteBatch.End();
 

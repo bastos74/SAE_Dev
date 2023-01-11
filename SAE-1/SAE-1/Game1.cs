@@ -16,7 +16,7 @@ namespace SAE_1
         private readonly ScreenManager _screenManager;
 
         // on définit les différents états possibles du jeu  
-        public enum Etats { Menu, Controls, Play, Quit , Pause};
+        public enum Etats { Menu, Controls, Play, Quit , Pause, End, End2};
 
         // on définit un champ pour stocker l'état en cours du jeu
         private Etats etat;
@@ -26,6 +26,7 @@ namespace SAE_1
         private ScreenPlay _screenPlay;
         private ScreenControls _screenControls;
         private ScreenPause _screenPause;
+        private ScreenEnd _screenEnd;
         
 
         public SpriteBatch SpriteBatch
@@ -71,6 +72,7 @@ namespace SAE_1
             _screenPlay = new ScreenPlay(this);
             _screenControls = new ScreenControls(this);
             _screenPause = new ScreenPause(this);
+            _screenEnd = new ScreenEnd(this);
             
         }
 
@@ -126,7 +128,26 @@ namespace SAE_1
                     if (this.Etat == Etats.Pause)
                     _screenManager.LoadScreen(_screenPause, new FadeTransition(GraphicsDevice, Color.Beige));
             }
-               
+
+            if (Keyboard.GetState().IsKeyDown(Keys.R))
+            {
+                if (this.Etat == Etats.Play)
+                    _screenManager.LoadScreen(_screenPlay, new FadeTransition(GraphicsDevice, Color.Black));
+            }
+          
+            if (ScreenPlay._chrono <= 0)
+            {
+                if (this.Etat == Etats.End)
+                    _screenManager.LoadScreen(_screenEnd, new FadeTransition(GraphicsDevice, Color.Black));
+                this.Etat = Etats.End2;
+
+            }
+            
+            if (Keyboard.GetState().IsKeyDown(Keys.M))
+            {
+                if (this.Etat == Etats.Menu)
+                    _screenManager.LoadScreen(_screenMenu, new FadeTransition(GraphicsDevice, Color.Black));
+            }
 
             // TODO: Add your update logic here
 

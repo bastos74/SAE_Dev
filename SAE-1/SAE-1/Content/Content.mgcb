@@ -126,6 +126,11 @@
 /processor:TiledMapProcessor
 /build:mapdebgp.tmx
 
+#begin mapquimarche.tmx
+/importer:TiledMapImporter
+/processor:TiledMapProcessor
+/build:mapquimarche.tmx
+
 #begin menu_sah.png
 /importer:TextureImporter
 /processor:TextureProcessor

@@ -1,0 +1,29 @@
+{
+  "textureAtlas": {
+    "texture": "C:\\Users\\ndiayism\\Downloads\\SAIKYO NO ZOMBIE.png",
+    "regionWidth": 64,
+    "regionHeight": 64
+  },
+  "cycles": {
+    "zombie_downwalk": {
+      "frames": [0,1,2,3],
+      "isLooping": false,
+      "frameDuration": 0.2
+    },
+    "zombie_leftwalk": {
+      "frames": [4,5,6,7],
+      "isLooping": false,
+      "frameDuration": 0.2
+    },
+    "zombie_rightwalk": {
+      "frames": [8,9,10,11],
+      "isLooping": false,
+      "frameDuration": 0.2
+    },
+    "zombieupwalk": {
+      "frames": [12,13,14,15],
+      "isLooping": false,
+      "frameDuration": 0.2
+    }
+  }
+}

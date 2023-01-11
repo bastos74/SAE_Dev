@@ -11,12 +11,13 @@ using System.Threading.Tasks;
 
 namespace SAE_1
 {
-    public class ScreenPause : GameScreen
+    public class ScreenEnd : GameScreen
     {
+
         private Game1 _myGame;
         private SpriteFont _font;
 
-        public ScreenPause(Game1 game) : base(game)
+        public ScreenEnd(Game1 game) : base(game)
         {
             _myGame = game;
         }
@@ -25,7 +26,7 @@ namespace SAE_1
         {
 
             base.LoadContent();
-          
+
             _font = Content.Load<SpriteFont>("font");
         }
 
@@ -33,20 +34,20 @@ namespace SAE_1
         {
 
             if (Keyboard.GetState().IsKeyDown(Keys.Back))
-            { _myGame.Etat = Game1.Etats.Menu; } 
-           
-            if (Keyboard.GetState().IsKeyDown(Keys.R))
-            { _myGame.Etat = Game1.Etats.Play; }
+            { _myGame.Etat = Game1.Etats.End; }
+
+            if (Keyboard.GetState().IsKeyDown(Keys.M))
+            { _myGame.Etat = Game1.Etats.Menu; }
 
         }
 
         public override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.Beige);
+            GraphicsDevice.Clear(Color.Aqua);
             _myGame.SpriteBatch.Begin();
-            _myGame.SpriteBatch.DrawString(_font, $" Pause " , new Vector2(320, 40), Color.Black);
-            _myGame.SpriteBatch.DrawString(_font,  $" Votre score : {ScreenPlay._score}", new Vector2(300, 100), Color.Black);
-            _myGame.SpriteBatch.DrawString(_font, $" Presser r pour jouer  : ", new Vector2(290, 160), Color.Black);
+            _myGame.SpriteBatch.DrawString(_font, $" Game finish ", new Vector2(300, 40), Color.Black);
+            _myGame.SpriteBatch.DrawString(_font, $" Votre score : {ScreenPlay._score}", new Vector2(290, 100), Color.Black);
+            _myGame.SpriteBatch.DrawString(_font, $" Pressed M to back to the menu  ", new Vector2(250, 150), Color.Black);
             _myGame.SpriteBatch.End();
         }
 

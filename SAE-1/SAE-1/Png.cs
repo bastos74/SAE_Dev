@@ -22,7 +22,6 @@ namespace SAE_1
         private Texture2D _png;
         private Vector2 position;
         
-       
        private static Vector2 pointA = new Vector2(1, 2);
        private static Vector2 pointB = new Vector2(3, 4);
        private static Vector2 positionVector = Vector2.Subtract(pointB, pointA);
@@ -70,7 +69,7 @@ namespace SAE_1
 
         public static void Update(float deltaTime)
         {
-            int vitesse = 60;
+            int vitesse = 80;
             
             Vector2 sens;
 
@@ -79,32 +78,45 @@ namespace SAE_1
             {
                 
                 Png png = ScreenPlay._sprites[i];
-                float distance = Vector2.Distance(png.Position, ScreenPlay._Pzombie);
-                
-  
-                // si la distance est inferieur a 15 pixel il y a une colision 
-                if (distance < 8 )
-                {
-                    Console.WriteLine("sa touche");
-                    Png pngASupprime = ScreenPlay._sprites[i];
-                    ScreenPlay._sprites.Remove(pngASupprime);
-                    ScreenPlay._score++;
-                       
-                }
+                float distance = Vector2.Distance(png.Position, ScreenPlay._Pzombie); 
                 sens = Vector2.Normalize(ScreenPlay._sprites[i].Position - ScreenPlay._Pzombie);
 
-                if (distance < 30 )
+                if (distance < 8*6 )
                 {
-                    png.position += sens * vitesse * deltaTime;
-                    
-                    //if (sens.X == 1)
-                    //{
-                    //    ushort tx = (ushort)(png.position.X / ScreenPlay._tiledMap.TileWidth + 1.25);
-                    //    ushort ty = (ushort)(png.position.Y / ScreenPlay._tiledMap.TileHeight);
-                    //    if (Colision.IsCollision(tx, ty))
-                    //    { png.position.X -= sens * vitesse * deltaTime; }
 
-                    //}
+                    
+                    ushort xX;
+                    ushort yX = (ushort)(png.position.Y / ScreenPlay._tiledMap.TileHeight);
+
+                    if (sens.X <= 0)
+                        xX = (ushort)(png.position.X / ScreenPlay._tiledMap.TileWidth - 0.5);
+                    else
+                        xX = (ushort)(png.position.X / ScreenPlay._tiledMap.TileWidth + 1.25);
+                    if(Colision.IsCollision(xX , yX))
+                    {
+                        sens.X = 0;
+                    }
+                    ushort xY = (ushort)(png.position.X / ScreenPlay._tiledMap.TileWidth);
+                    ushort yY;
+                    if (sens.Y <= 0)
+                        yY = (ushort)(png.position.Y / ScreenPlay._tiledMap.TileHeight - 0.50);
+                    else
+                        yY = (ushort)(png.position.Y / ScreenPlay._tiledMap.TileHeight + 1.50);
+                    if (Colision.IsCollision(xY, yY))
+                    {
+                        sens.Y = 0;
+                    }
+                    png.position += sens * vitesse * deltaTime;
+
+                    // si la distance est inferieur a 15 pixel il y a une colision 
+                    if (distance < 8)
+                    {
+                        Console.WriteLine("sa touche");
+                        Png pngASupprime = ScreenPlay._sprites[i];
+                        ScreenPlay._sprites.Remove(pngASupprime);
+                        ScreenPlay._score++;
+
+                    }
 
                 }
             }
