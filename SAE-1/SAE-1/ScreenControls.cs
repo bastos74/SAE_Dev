@@ -19,10 +19,12 @@ namespace SAE_1
         private Texture2D _textureLeftArrow;
         private Texture2D _textureDownArrow;
         private Texture2D _textureRightArrow;
+        private Texture2D _textureZsqd;
         private Vector2 _positionUpArrow;
         private Vector2 _positionLeftArrow;
         private Vector2 _positionDownArrow;
         private Vector2 _positionRightArrow;
+        private Vector2 _positionZqsd;
         private Texture2D _textureSpacebar;
         // pour récupérer une référence à l’objet game pour avoir accès à tout ce qui est 
         // défini dans Game1
@@ -39,6 +41,10 @@ namespace SAE_1
             _textureDownArrow = Content.Load<Texture2D>("downarrow");
             _textureRightArrow = Content.Load<Texture2D>("rightarrow");
             _textureSpacebar = Content.Load<Texture2D>("Spacebar2");
+            _textureZsqd = Content.Load<Texture2D>("index");
+
+
+
             _font = Content.Load<SpriteFont>("font");
         }
         public override void Update(GameTime gameTime)
@@ -63,6 +69,7 @@ namespace SAE_1
                 "\nProvoke the Apocalypse and the catastrophe around the city as a Zombie " +
                 "\nBite them All! DON'T SPARE ANYONE!" + "\nEAT THEIR BRAAAAAAAAIIIIIINNNNNN!!!",
                 new Vector2(0, 250), Color.White);
+            _myGame.SpriteBatch.Draw(_textureZsqd, new Vector2(20, 10), Color.White);
             _myGame.SpriteBatch.DrawString(_font, $"HERE'S YOUR ZOMBIE !!!", new Vector2(0, 400), Color.Crimson);
             _myGame.SpriteBatch.End();
 
@@ -70,3 +77,7 @@ namespace SAE_1
         }
     }
 }
+
+
+
+

@@ -109,6 +109,18 @@
 /processorParam:TextureFormat=Compressed
 /build:font.spritefont
 
+#begin index.jpg
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:index.jpg
+
 #begin leftarrow.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -237,6 +249,30 @@
 /processorParam:TextureFormat=Color
 /build:Zombiee.png
 
+#begin zombiefinal.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:zombiefinal.png
+
+#begin zqsd.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:zqsd.png
+
 #begin ZSAE1.01.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -248,4 +284,16 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:ZSAE1.01.png
+
+#begin ZSAE1removebg.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:ZSAE1removebg.png
 

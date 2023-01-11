@@ -38,9 +38,6 @@ namespace SAE_1
         private static int _vitesseZ;
         private static int _sens;
 
-
-        
-
         // png 
         public static Texture2D _Png;
         public static List<Png> _sprites = new List<Png>();
@@ -69,10 +66,10 @@ namespace SAE_1
      
             GraphicsDevice.BlendState = BlendState.AlphaBlend;
 
-            _Pzombie = new Vector2(0, 0);
+            _Pzombie = new Vector2(20, 20);
             _vitesseZ = 150;
 
-            for (int i = 0; i < 20; i++)
+            for (int i = 0; i < 25; i++)
             {
                _sprites.Add(new(_Png, new Vector2(new Random().Next(0 , 700),new Random().Next(0 , 512)), Content));   
             }
@@ -83,6 +80,7 @@ namespace SAE_1
             // score 
             _score = 0;
             _positionscore = new Vector2(630, 0);
+            
             // chrono 
             _chrono = 10;
             _positionChrono = new Vector2(612, 15);
@@ -102,7 +100,7 @@ namespace SAE_1
             _tiledMap = Content.Load<TiledMap>("mapdebgp");
             Colision.LoadContent(Content);
             _tiledMapRenderer = new TiledMapRenderer(GraphicsDevice, _tiledMap);
-            _Zombie = Content.Load<Texture2D>("ZSAE1.01");
+            _Zombie = Content.Load<Texture2D>("ZSAE1removebg");
             
 
             // pour le score 
@@ -141,10 +139,10 @@ namespace SAE_1
             // deplacement du zombie + les collistion            
             _sens = 0;
             //fleche droite
-            if (_keyboardState.IsKeyDown(Keys.Right))
+            if (_keyboardState.IsKeyDown(Keys.Right) || (_keyboardState.IsKeyDown(Keys.D)))
             {
                 _sens = 1;
-                ushort tx = (ushort)(_Pzombie.X / _tiledMap.TileWidth + 1.25);
+                ushort tx = (ushort)(_Pzombie.X / _tiledMap.TileWidth + 1);
                 ushort ty = (ushort)(_Pzombie.Y / _tiledMap.TileHeight);
                 _Pzombie.X += _sens * _vitesseZ * deltaTime;
 
@@ -153,7 +151,7 @@ namespace SAE_1
             }
 
             // fleche gauche 
-            if (_keyboardState.IsKeyDown(Keys.Left))
+            if (_keyboardState.IsKeyDown(Keys.Left) || (_keyboardState.IsKeyDown(Keys.Q)))
             {
                 _sens = -1;
 
@@ -167,22 +165,22 @@ namespace SAE_1
             }
 
             //fleche haut
-            if (_keyboardState.IsKeyDown(Keys.Up))
+            if (_keyboardState.IsKeyDown(Keys.Up) || (_keyboardState.IsKeyDown(Keys.Z)))
             {
                 _sens = -1;
                 ushort tx = (ushort)(_Pzombie.X / _tiledMap.TileWidth);
-                ushort ty = (ushort)(_Pzombie.Y / _tiledMap.TileHeight +0.5);
+                ushort ty = (ushort)(_Pzombie.Y / _tiledMap.TileHeight - 0.25);
                 _Pzombie.Y += _sens * _vitesseZ * deltaTime;
                 if (Colision.IsCollision(tx, ty))
                 { _Pzombie.Y -= _sens * _vitesseZ * deltaTime; }
             }
 
             // fleche bas 
-            if (_keyboardState.IsKeyDown(Keys.Down))
+            if (_keyboardState.IsKeyDown(Keys.Down) || (_keyboardState.IsKeyDown(Keys.S)))
             {
                 _sens = 1;
                 ushort tx = (ushort)(_Pzombie.X / _tiledMap.TileWidth);
-                ushort ty = (ushort)(_Pzombie.Y / _tiledMap.TileHeight + 1.25);
+                ushort ty = (ushort)(_Pzombie.Y / _tiledMap.TileHeight + 1.50);
                 _Pzombie.Y += _sens * _vitesseZ * deltaTime;
                 if (Colision.IsCollision(tx, ty))
                 { _Pzombie.Y -= _sens * _vitesseZ * deltaTime; }
@@ -200,7 +198,6 @@ namespace SAE_1
                 _myGame.Etat = Game1.Etats.End;
 
             }
-
 
             // vecteur 
             _positionPerso += _direction * (float)gameTime.ElapsedGameTime.TotalMilliseconds * vitesse;
