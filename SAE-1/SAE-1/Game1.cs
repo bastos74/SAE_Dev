@@ -114,6 +114,8 @@ namespace SAE_1
 
                 else if (this.Etat == Etats.Controls)
                     _screenManager.LoadScreen(_screenControls, new FadeTransition(GraphicsDevice, Color.Black));
+                else if (this.Etat == Etats.Quit)
+                    _screenManager.LoadScreen(_screenMenu, new FadeTransition(GraphicsDevice, Color.Black));
                
 
             }
@@ -139,7 +141,7 @@ namespace SAE_1
             if (ScreenPlay._chrono <= 0)
             {
                 if (this.Etat == Etats.End)
-                    this.Etat = Etats.Attend;
+                    
                     _screenManager.LoadScreen(_screenEnd, new FadeTransition(GraphicsDevice, Color.Black));
                
             }

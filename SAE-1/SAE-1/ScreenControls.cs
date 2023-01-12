@@ -20,11 +20,6 @@ namespace SAE_1
         private Texture2D _textureDownArrow;
         private Texture2D _textureRightArrow;
         private Texture2D _textureZsqd;
-        private Vector2 _positionUpArrow;
-        private Vector2 _positionLeftArrow;
-        private Vector2 _positionDownArrow;
-        private Vector2 _positionRightArrow;
-        private Vector2 _positionZqsd;
         private Texture2D _textureSpacebar;
         // pour récupérer une référence à l’objet game pour avoir accès à tout ce qui est 
         // défini dans Game1

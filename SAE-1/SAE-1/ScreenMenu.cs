@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoGame.Extended.Screens;
+using Microsoft.Xna.Framework.Media;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,6 +21,9 @@ namespace SAE_1
         // texture du menu avec 3 boutons
         private Texture2D _textBoutons;
 
+        // pour le son 
+        Song song;
+
         // contient les rectangles : position et taille des 3 boutons présents dans la texture 
         private Rectangle[] lesBoutons;
 
@@ -35,8 +39,21 @@ namespace SAE_1
         public override void LoadContent()
         {
             _textBoutons = Content.Load<Texture2D>("menu_sah");
+            
+            this.song = Content.Load<Song>("song");
+            MediaPlayer.Play(song);
+
             base.LoadContent();
         }
+
+        void MediaPlayer_MediaStateChanged(object sender, System.EventArgs e)
+        {
+            // 0.0f is silent, 1.0f is full volume
+            MediaPlayer.Volume -= 0.1f;
+            MediaPlayer.Play(song);
+        }
+
+
         public override void Update(GameTime gameTime)
         {
 

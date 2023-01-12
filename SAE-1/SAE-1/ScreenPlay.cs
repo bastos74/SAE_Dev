@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Media;
 using MonoGame.Extended.Screens;
 using System;
 using System.Collections.Generic;
@@ -31,10 +32,7 @@ namespace SAE_1
 
         // zombie 
         public static Texture2D _Zombie;
-        private AnimatedSprite _zombie;
         public static Vector2 _Pzombie;
-        public const int LARGEUR_Z = 50;
-        public const int HAUTEUR_Z = 24;
         private static int _vitesseZ;
         private static int _sens;
 
@@ -50,7 +48,6 @@ namespace SAE_1
 
         // les vecteur 
         private Vector2 _direction;
-        private int vitesse;
         private Vector2 _positionPerso;
 
         private Game1 _myGame;
@@ -82,9 +79,8 @@ namespace SAE_1
             _positionscore = new Vector2(630, 0);
             
             // chrono 
-            _chrono = 10;
+            _chrono = 60;
             _positionChrono = new Vector2(612, 15);
-
 
             base.Initialize();
         }
